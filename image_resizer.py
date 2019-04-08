@@ -16,7 +16,7 @@ def downloadImage(path):
     return "./stored/%s.png" % imgName
 
 def fitImage(path):
-    size = 400, 764
+    size = 200, 382
     imgName = getImgName(path)
     if os.path.isfile("./cached/%s.png" % imgName):
         return imgName
@@ -24,7 +24,7 @@ def fitImage(path):
         try:
             img = downloadImage(path)
             im = Image.open(img)
-            im.thumbnail(size, Image.ANTIALIAS)
+            im.thumbnail(size)
             im.save("./cached/%s.png" % imgName, "png")
             try:
                 os.remove("./stored/%s.png" % imgName)
