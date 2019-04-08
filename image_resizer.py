@@ -6,12 +6,13 @@ app = Flask(__name__)
 
 def getImgName(path):
     paths = path.split("/")
-    imgName = paths[len(paths)-1].split('.')[0]
+    imgName = paths[len(paths)-1]
     return imgName
 
 def downloadImage(path):
     imgName = getImgName(path)
-    urllib.request.urlretrieve('https://%s' % path, "./stored/%s.png" % imgName)
+    print(path)
+    urllib.request.urlretrieve('https:%s' % path, "./stored/%s.png" % imgName)
     return "./stored/%s.png" % imgName
 
 def fitImage(path):
@@ -30,8 +31,10 @@ def fitImage(path):
             except OSError as oserr:
                 print(oserr)
             return imgName
-        except IOError:
+        except IOError as errIO:
+            print(errIO)
             print("cannot create thumbnail for '%s'" % imgName)
+            return ''
 
 
 @app.route('/images')
@@ -41,4 +44,4 @@ def get_image():
     return send_from_directory('./cached/', img+".png")
 
 if __name__ == '__main__':
-    app.run(debug=False, port=5000, host="0.0.0.0")
+    app.run(debug=True, port=5000, host="0.0.0.0")
