@@ -16,7 +16,7 @@ def downloadImage(path):
     return "./stored/%s.png" % imgName
 
 def fitImage(path):
-    size = 200, 382
+    size = 500, 260
     imgName = getImgName(path)
     if os.path.isfile("./cached/%s.png" % imgName):
         return imgName
