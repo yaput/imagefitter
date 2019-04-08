@@ -1,5 +1,5 @@
 import os, sys
-from PIL import Image
+from PIL import Image, ImageOps
 from flask import Flask, send_from_directory, request
 import urllib.request
 app = Flask(__name__)
@@ -16,7 +16,7 @@ def downloadImage(path):
     return "./stored/%s.png" % imgName
 
 def fitImage(path):
-    size = 500, 260
+    size = 764, 400
     imgName = getImgName(path)
     if os.path.isfile("./cached/%s.png" % imgName):
         return imgName
@@ -24,8 +24,8 @@ def fitImage(path):
         try:
             img = downloadImage(path)
             im = Image.open(img)
-            im.thumbnail(size)
-            im.save("./cached/%s.png" % imgName, "png")
+            fit = ImageOps.fit(im, size, Image.ANTIALIAS)
+            fit.save("./cached/%s.png" % imgName, "png")
             try:
                 os.remove("./stored/%s.png" % imgName)
             except OSError as oserr:
