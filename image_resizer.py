@@ -16,7 +16,7 @@ def downloadImage(path):
     return "./stored/%s.png" % imgName
 
 def fitImage(path):
-    size = 764, 400
+    size = 153, 80
     imgName = getImgName(path)
     if os.path.isfile("./cached/%s.png" % imgName):
         return imgName
@@ -24,8 +24,10 @@ def fitImage(path):
         try:
             img = downloadImage(path)
             im = Image.open(img)
-            fit = ImageOps.fit(im, size, Image.ANTIALIAS)
-            fit.save("./cached/%s.png" % imgName, "png")
+            fit_im = ImageOps.fit(im, size, Image.ANTIALIAS)
+            fit_im.convert("RGBA")
+            new_im = make_square(fit_im)
+            new_im.save("./cached/%s.png" % imgName, "png")
             try:
                 os.remove("./stored/%s.png" % imgName)
             except OSError as oserr:
@@ -35,6 +37,14 @@ def fitImage(path):
             print(errIO)
             print("cannot create thumbnail for '%s'" % imgName)
             return ''
+
+def make_square(im, min_size=256, fill_color=(255, 255, 255, 255)):
+    x, y = im.size
+    print(x,y)
+    print(im.size)
+    new_im = Image.new('RGBA', (400, 156), fill_color)
+    new_im.paste(im, (int((400 - x) / 2), int((156 - y) / 2)), im)
+    return new_im
 
 
 @app.route('/images')
