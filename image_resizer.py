@@ -41,4 +41,4 @@ def get_image():
     return send_from_directory('./cached/', img+".png")
 
 if __name__ == '__main__':
-    app.run(debug=False, port=5000)
+    app.run(debug=False, port=5000, host="127.0.0.1")
