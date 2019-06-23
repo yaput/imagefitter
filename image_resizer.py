@@ -42,8 +42,8 @@ def make_square(im, min_size=256, fill_color=(255, 255, 255, 255)):
     x, y = im.size
     print(x,y)
     print(im.size)
-    new_im = Image.new('RGBA', (400, 156), fill_color)
-    new_im.paste(im, (int((400 - x) / 2), int((156 - y) / 2)), im)
+    new_im = Image.new('RGBA', (400, 209), fill_color)
+    new_im.paste(im, (int((400 - x) / 2), int((209 - y) / 2)), im)
     return new_im
 
 
