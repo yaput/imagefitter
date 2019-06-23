@@ -16,7 +16,7 @@ def downloadImage(path):
     return "./stored/%s.png" % imgName
 
 def fitImage(path):
-    size = 153, 80
+    size = 353, 185
     imgName = getImgName(path)
     if os.path.isfile("./cached/%s.png" % imgName):
         return imgName
@@ -53,5 +53,7 @@ def get_image():
     img = fitImage(pid)
     return send_from_directory('./cached/', img+".png")
 
+from waitress import serve
 if __name__ == '__main__':
-    app.run(debug=True, port=5000, host="0.0.0.0")
+    # app.run(debug=True, port=5000, host="0.0.0.0")
+    serve(app, listen='*:5000')
