@@ -17,6 +17,8 @@ def downloadImage(path):
 
 def fitImage(path):
     size = 353, 185
+    if path == "//www.sony.com/is/image/gwtprod/8bbb5d967178cfcc87dd13e32a403cdf?fmt=png-alpha" or path == "//www.sony.com/is/image/gwtprod/ca4d0f67c505a1fea694cc82f1add36e?fmt=png-alpha":
+        size = 253,133
     imgName = getImgName(path)
     if os.path.isfile("./cached/%s.png" % imgName):
         return imgName
