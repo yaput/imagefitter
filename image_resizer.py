@@ -55,6 +55,10 @@ def get_image():
     img = fitImage(pid)
     return send_from_directory('./cached/', img+".png")
 
+@app.route('/hello')
+def hello():
+    return "Hello"
+
 from waitress import serve
 if __name__ == '__main__':
     # app.run(debug=True, port=5000, host="0.0.0.0")
