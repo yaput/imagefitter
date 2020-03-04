@@ -8,4 +8,4 @@ MarkupSafe==1.1.1
 Pillow==6.2.0
 pytz==2018.9
 sqlparse==0.3.0
-Werkzeug==0.15.2
+werkzeug>=0.15.3
