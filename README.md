@@ -10,4 +10,5 @@ This is a simple image fitter server
 - Return the request with the new URL
 
 
-Run it using wsgi command to run a web server
+how to run it:
+`python wsgi.py`
