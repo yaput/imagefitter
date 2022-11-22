@@ -5,7 +5,7 @@ image==1.5.27
 itsdangerous==1.1.0
 Jinja2==2.11.3
 MarkupSafe==1.1.1
-Pillow==8.3.2
+Pillow==9.3.0
 pytz==2018.9
 sqlparse==0.3.0
 werkzeug>=0.15.3
